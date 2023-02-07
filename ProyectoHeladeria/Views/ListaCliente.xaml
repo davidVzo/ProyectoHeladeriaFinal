@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.ListaCliente">
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="0">
+            <Frame HeightRequest="30"  >
+                <Label FontSize="Medium" TextColor="#0A549B"  Text="Clientes"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </Frame>
+
+            <Frame BackgroundColor="#D6F5B5" BorderColor="DarkSlateGray" HeightRequest="60" Padding="0">
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="60"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Margin="2,0,3,0" Text="Id" VerticalOptions="Center"  Grid.Column="0" />
+                    <Label Margin="2,0,2,0" Text="Cedula" VerticalOptions="Center"  Grid.Column="1" />
+                    <Label Margin="2,0,2,0" Text="Nombre" VerticalOptions="Center"  Grid.Column="2" />
+
+
+                    <Label Margin="2,0,2,0" Text="Telefono" VerticalOptions="Center"  Grid.Column="3" />
+                    <Label Margin="2,0,2,0" Text="Correo" VerticalOptions="Center"  Grid.Column="4" />
+                    <Label Margin="2,0,2,0" Text="Estado" VerticalOptions="Center"  Grid.Column="5" />
+
+
+
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+
+
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="lstClientes" SelectionMode="Single" ItemSelected="lstClientes_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid Padding="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
+
+
+
+                                </Grid.ColumnDefinitions>
+
+                                <Label Margin="2,0,2,0" Text="{Binding idUsuario}" VerticalOptions="Center"  Grid.Column="0"  />
+                                <Label Margin="2,0,2,0" Text="{Binding cedula}" VerticalOptions="Center"  Grid.Column="1" />
+                                <Label Margin="2,0,2,0" Text="{Binding nombres}" VerticalOptions="Center"  Grid.Column="2" />
+
+                                <Label Margin="2,0,2,0" Text="{Binding telefono}" VerticalOptions="Center"  Grid.Column="3" />
+                                <Label Margin="2,0,2,0" Text="{Binding correo}" VerticalOptions="Center"  Grid.Column="4" />
+                                <Label Margin="2,0,2,0" Text="{Binding estado}" VerticalOptions="Center"  Grid.Column="5" />
+
+
+                            </Grid>
+
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout>
+                <Button CornerRadius="30" BackgroundColor="#4CAF50" Text="Insertar" x:Name="btnInsertar" TextColor="White"  />
+                <!--
+                <Button Text="Eliminar" x:Name="btnEliminar"   />
+            -->
+                <Button CornerRadius="30" Text="Eliminar Datos" x:Name="btnEliminarID"  TextColor="White" BackgroundColor="Red"/>
+                <Button  CornerRadius="30" BackgroundColor="#4CAF50"  Text="Editar" x:Name="btnEditar" TextColor="White"   />
+
+            </StackLayout>
+
+
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

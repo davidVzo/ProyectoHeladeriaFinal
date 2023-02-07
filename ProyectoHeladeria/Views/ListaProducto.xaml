@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.ListaProducto">
+    
+
+    <ContentPage.Content>
+
+        <StackLayout Padding="20" Spacing="0">
+            <Label x:Name="lblIdUsuario" IsVisible="false" />
+            <Label x:Name="lblIdVenta" IsVisible="false" />
+            <Frame HeightRequest="30"  >
+                <Label FontSize="Medium" TextColor="#0A549B"  Text="Helados"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </Frame>
+
+            <ScrollView>
+                <StackLayout  >
+                    <CollectionView x:Name="lstProductos" SelectionMode="Single" SelectionChanged="lstProductos_SelectionChanged"   >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                
+                                    <Grid >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        
+                                    </Grid.ColumnDefinitions>
+                                        
+
+                                        <!--
+                                            <Label BackgroundColor="Aqua" Text="{Binding idProductos}" VerticalOptions="Center"/>
+                                            -->
+                                    <StackLayout Grid.Column="0" >
+                                        <Label Text="{Binding nombreProducto}" VerticalOptions="Center"/>
+                                        <Image Source="helado.png" />
+
+
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1"
+                                        >
+                                        <Label  Text="{Binding sabor}" VerticalOptions="Center" Margin="0,30,0,0"  />
+                                     
+                                        <Label  Text="{Binding adereso}" VerticalOptions="Center"  />
+                                        
+                                            <Label  Text="{Binding costo}" VerticalOptions="Center"   />
+                                        
+
+                                    </StackLayout>
+                                     
+
+                                        
+                                    </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
+            </ScrollView>
+            <!--
+                <Button Text="Agregar Producto " x:Name="btnAgregar" Clicked="btnAgregar_Clicked" />
+            -->
+
+            <Button CornerRadius="30" BackgroundColor="#4CAF50"  Text="Agregar Venta" TextColor="Wheat" x:Name="btnAgregarVenta" Clicked="btnAgregarVenta_Clicked" />
+            <!--
+                <Button Text="Insertar" x:Name="btnInsertar"  />
+            <Button Text="Eliminar" x:Name="btnEliminar"   />
+            <Button Text="Eliminar Datos" x:Name="btnEliminarID"  TextColor="White" BackgroundColor="Red"/>
+            <Button Text="Editar" x:Name="btnEditar" Clicked="btnEditar_Clicked" />
+            -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

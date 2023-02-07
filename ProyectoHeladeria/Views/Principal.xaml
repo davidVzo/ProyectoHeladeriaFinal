@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.Principal"
+             
+             >
+    <ContentPage.Content >
+
+        <StackLayout BackgroundColor="#FFCCA6">
+            
+            
+            
+            <Frame  Padding="10" CornerRadius="0"  >
+                <Label Text="ICE FIRULAIS" HorizontalTextAlignment="End" TextColor="#0A549B" FontSize="30" FontAttributes="Bold,Italic"/>
+            </Frame>
+            
+            <StackLayout >
+                <CarouselView x:Name="Carousel" IndicatorView="IndicatorView"
+                          HeightRequest="300">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Url}" Aspect="AspectFill"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="IndicatorView"
+                IndicatorColor="Gray"
+                SelectedIndicatorColor="Orange"
+                IndicatorSize="10"
+                           VerticalOptions="Center"/>
+
+            </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Nos especializamos en brindar alegria a travez de nuestros productos, que se puede personalizar al gusto de cada cliente,desde los mas grande,hasta lo más pequeño del hogar." HorizontalTextAlignment="Center" TextColor="Black" Margin="40,30,40,20"/>
+                    <Label Text="Conoce algunos de nuestros magnificos sabores" HorizontalTextAlignment="Center" TextColor="#0A549B" Margin="50,10,50,20" FontAttributes="Italic" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="130"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="guanabana.jpg" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="Guanabana" Grid.Row="1" Grid.Column="0" Margin="40,0,0,0"/>
+                        <Image Source="mango.jpg" Grid.Row="0" Grid.Column="1"/>
+                        <Label Text="mango" Grid.Row="1" Grid.Column="1" Margin="40,0,0,0"/>
+                        <Image Source="chocolate.jpg" Grid.Row="0" Grid.Column="2"/>
+                        <Label Text="chocolate" Grid.Row="1" Grid.Column="2" Margin="40,0,0,0"/>
+                    </Grid>
+                    <Image Source="mapa.jpg"/>
+
+
+
+
+                </StackLayout>
+                
+            </ScrollView>
+
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

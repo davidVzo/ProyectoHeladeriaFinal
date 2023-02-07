@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.IngresarUsuario"
+             NavigationPage.HasNavigationBar="False"
+             >
+    
+    <ContentPage.Content>
+        <Grid>
+            <Image Grid.Row="0" Source="fondo.png" Aspect="AspectFill" HeightRequest="60" />
+            <BoxView Grid.Row="0" Color="#E79506" Opacity="0.8" HeightRequest="600"  />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                
+
+                <Image Source="foto.png" HorizontalOptions="Start" />
+                <Button Text="Ingresar Imagen" HorizontalOptions="End"  CornerRadius="20" />
+                <Frame Grid.Row="1" CornerRadius="45" >
+                    <StackLayout  Grid.Row="2" BackgroundColor="White" Padding="60" >
+
+                        <Entry Placeholder="Nombres" x:Name="entNombres" />
+                        <Entry Placeholder="Apellidos" x:Name="entApellidos"  />
+                        <Entry Placeholder="Cédula"  x:Name="entCedula" Keyboard="Numeric" />
+                        <Entry Placeholder="Teléfono" x:Name="entTelefono" Keyboard="Numeric" />
+                        <Entry Placeholder="Dirección" x:Name="entDireccion" />
+                        <Entry Placeholder="Correo" x:Name="entCorreo" Keyboard="Email" />
+                        <Entry Placeholder="Usuario" x:Name="entUsuario" />
+                        <Entry Placeholder="Contraseña" x:Name="entContrasena" />
+                        
+                        
+                        <Button Text="Confirmar" Margin="50,0,50,20"  TextColor="White" BackgroundColor="#423B30" x:Name="insertarUsuario" Clicked="insertarUsuario_Clicked"  />
+                        <Button Text="Cancelar"  Margin="50,0,50,20" TextColor="White" BackgroundColor="#423B30" x:Name="Cancelar" Clicked="Cancelar_Clicked"  />
+                    </StackLayout>
+                </Frame>
+                   
+               
+
+
+
+
+
+
+            </Grid>
+        </Grid>
+       
+            
+           
+
+        
+        
+           
+            
+
+        
+     
+    </ContentPage.Content>
+</ContentPage>

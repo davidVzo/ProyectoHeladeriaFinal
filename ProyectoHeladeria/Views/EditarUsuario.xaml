@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.EditarUsuario">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <Label Text="Editar Usuario" />
+            </Frame>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Id Usuario" />
+                    <Entry x:Name="entIdUsuario" />
+                    <Label Text="Imagen" />
+                    <Entry x:Name="entImagenUsuario" />
+                    <Label Text="Cédula" />
+                    <Entry x:Name="entCedulaUsuario" />
+                    <Label Text="Nombres" />
+                    <Entry x:Name="entNombresUsuario" />
+                    <Label Text="Apellidos" />
+                    <Entry x:Name="entApellidosUsuario" />
+                    <Label Text="Teléfono" />
+                    <Entry x:Name="entTelefonoUsuario" />
+                    <Label Text="Dirección" />
+                    <Entry x:Name="entDireccionUsuario" />
+                    <Label Text="Correo" />
+                    <Entry x:Name="entCorreoUsuario" />
+                    <Label Text="Usuario" />
+                    <Entry x:Name="entUsuario" />
+                    <Label Text="Contraseña" />
+                    <Entry x:Name="entContraseñaUsuario" />
+                    <Label Text="Estado" />
+                    <Entry x:Name="entEstadoUsuario" />
+                    <Label Text="Perfil" />
+                    <Entry x:Name="entPerfilUsuario" />
+                </StackLayout>
+                
+
+            </ScrollView>
+            
+            <Button x:Name="btnGuardar" Clicked="btnGuardar_Clicked" Text="Guardar" />
+            <Button x:Name="btnCancelar"/>
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.Login"
+            NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Image  Source="fondo.png" Aspect="AspectFill" />
+            <BoxView Color="#E79506" Opacity="0.8"  />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ImageButton Grid.Row="0" Aspect="AspectFill" Source="logoIceFiru.png" WidthRequest="300" CornerRadius="205" Margin="70,10,60,10"/>
+                
+                
+
+                <StackLayout Grid.Row="1" Padding="30,20"  >
+                    <Entry Placeholder="Usuario" PlaceholderColor="White" x:Name="entUsuario" />
+                    <Entry Placeholder="Contraseña" IsPassword="True"   x:Name="entContrasena" PlaceholderColor="White"   />
+                    <Button   Text="Iniciar Sesión"   x:Name="btnLogin" BackgroundColor="White" CornerRadius="20" TextColor="Black"  Clicked="btnLogin_Clicked" />
+                    <StackLayout Orientation="Horizontal" >
+                        <Button Text="¿Recuperar contraseña?" TextColor="White" BackgroundColor="Transparent" FontSize="14" />
+
+                        <Button Text="Registrarse"
+                                x:Name="btnRegistrar"
+                                Clicked="btnRegistrar_Clicked"
+                                TextColor="White"
+                                BackgroundColor="Transparent" FontSize="14" HorizontalOptions="EndAndExpand"  FontAttributes="Bold" />
+                        
+                        
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" HorizontalOptions="Center"  Margin="0,0,0,50" >
+                    <Label Text="Iniciar sesión con" HorizontalOptions="Center"  />
+                    <StackLayout Orientation="Horizontal"  >
+                        <Image Grid.Row="0" Source="instag.ico" WidthRequest="45"  HeightRequest="45" />
+                        <Image Grid.Row="0" Source="google.png" WidthRequest="45" HeightRequest="45" />
+                        <Image Grid.Row="0" Source="faceb.ico" WidthRequest="45" HeightRequest="45" />
+
+                    </StackLayout>
+
+                </StackLayout>
+
+
+
+
+
+
+
+            </Grid>
+
+        </Grid>
+   
+      
+
+    </ContentPage.Content>
+</ContentPage>

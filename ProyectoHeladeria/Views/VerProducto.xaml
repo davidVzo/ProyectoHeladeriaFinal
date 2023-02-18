@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.VerProducto">
+    <ContentPage.Content>
+        <StackLayout Padding="0" Spacing="0">
+          
+            
+            <Entry x:Name="entIdVenta" IsVisible="false"  />
+            
+
+            <Label x:Name="lblNVenta" IsVisible="false" />
+
+            
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                     
+                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    
+                        <StackLayout Grid.Row="0" HeightRequest="300" Padding="5" >
+                            <Image Source="helado.png" HeightRequest="250" />
+
+                            <Label x:Name="entIdProducto" IsVisible="false" />
+
+                        </StackLayout>
+
+
+
+                <StackLayout Grid.Row="1" BackgroundColor="#FDFAC0" Padding="10,0,0,0"  Margin="0" >
+
+
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$ " FontSize="15" ForegroundColor="Fuchsia" />
+                                <Span x:Name="spnPrecio" FontSize="15" ForegroundColor="Fuchsia"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        
+
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+
+                                <Span x:Name="spnNombreProducto" TextColor="Black" FontAttributes="Bold" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Sabor: "/>
+                                <Span x:Name="spnSabor"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Adereso: "/>
+                                <Span x:Name="spnAdereso"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                 
+
+
+
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="6" Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+           
+
+                        <Frame CornerRadius="100" 
+                       HeightRequest="0"
+                       WidthRequest="40"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       IsClippedToBounds="True"
+                       Grid.Column="0"
+                       BackgroundColor="#96B3FB"
+                       
+                       >
+
+                            <Button Text="-"  Clicked="btnCantidad" Padding="0" Margin="0,-5,0,0"  FontSize="25"  BackgroundColor="#96B3FB"  />
+                        </Frame>
+
+                        <Label x:Name="lblCantidad" Grid.Column="1" FontSize="20" Margin="0,5,0,0"  />
+
+                        <Frame CornerRadius="100" 
+                       HeightRequest="0"
+                       WidthRequest="40"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       IsClippedToBounds="True"
+                       Grid.Column="2"
+                       BackgroundColor="#96B3FB"
+                       
+                       >
+
+                            <Button Text="+" Grid.Column="2"  Clicked="btnCantidad" BackgroundColor="#96B3FB"    />
+                        </Frame>
+
+                        <Label Grid.Column="3">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="$" FontSize="25" ForegroundColor="Fuchsia" />
+                                    
+                                    <Span x:Name="spnPrecioTotal"  FontSize="25" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+
+
+                        <Frame Grid.Column="4" Padding="0" Margin="0" CornerRadius="12" >
+
+                            <Button BackgroundColor="#4CAF50" Text="Agregar Producto" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" />
+                        </Frame>
+
+
+                    </Grid>
+
+                </StackLayout>
+
+
+            </Grid>
+            
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

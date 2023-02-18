@@ -18,8 +18,9 @@ namespace ProyectoHeladeria.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetalleVentas : ContentPage
     {
-        
-        
+        // Ver Venta 
+        private const string UrlVenta3 = "http://192.168.56.1/heladeria/postVentas3.php?Usuario_idUsuario={0}&numeroVenta={1}";
+
 
         private const string UrlDetalle = "http://192.168.56.1/heladeria/postDetalles.php";
         // Ver Detalle
@@ -47,19 +48,18 @@ namespace ProyectoHeladeria.Views
 
        
 
-        public DetalleVentas(int idProducto, string nombreProducto, string adereso, double precio,string sabor,int idUsuario,int idVenta )
+        public DetalleVentas(int idUsuario )
         {
             InitializeComponent();
             Get();
-            entIdProducto.Text = idProducto.ToString();
-            entNombreProducto.Text = nombreProducto.ToString();
-            entAdereso.Text = adereso.ToString();
-            entPrecio.Text = precio.ToString(); 
-            entSabor.Text = sabor.ToString();
-            Usuario_idUsuario = idUsuario;
-            IdVentas= idVenta;
-            // id venta
-            lblNVenta.Text = idVenta.ToString();
+         //   Usuario_idUsuario = idUsuario;
+            GetVenta(idUsuario);
+         
+            
+            //IdVentas= idVenta;
+            
+            //// id venta
+            //lblNVenta.Text = idVenta.ToString();
            
            
         }
@@ -67,53 +67,53 @@ namespace ProyectoHeladeria.Views
         
         private async void btnAgregar_Clicked(object sender, EventArgs e)
         {
-            //calcular costos por producto
-            double cantidad = double.Parse(lblCantidad.Text);
+            ////calcular costos por producto
+            //double cantidad = double.Parse(lblCantidad.Text);
 
-            //double precioUnitario = Convert.ToDouble(entPrecio.Text)
-            double precioUnitario = double.Parse(entPrecio.Text);
+            ////double precioUnitario = Convert.ToDouble(entPrecio.Text)
+            //double precioUnitario = double.Parse(entPrecio.Text);
             
-            double precioTotal = cantidad * precioUnitario ;
-            PrecioFinal = precioTotal+PrecioFinal;
-            //Calcular precio por producto
+            //double precioTotal = cantidad * precioUnitario ;
+            //PrecioFinal = precioTotal+PrecioFinal;
+            ////Calcular precio por producto
 
-            //Insertar en la base 
+            ////Insertar en la base 
 
 
 
-            // await Navigation.PushAsync(new ListaProducto(Usuario_idUsuario,IdVentas));
-            //////////////////////////////
-            WebClient detalle = new WebClient();
-            try
-            {
-                var parameters = new System.Collections.Specialized.NameValueCollection();
+            //// await Navigation.PushAsync(new ListaProducto(Usuario_idUsuario,IdVentas));
+            ////////////////////////////////
+            //WebClient detalle = new WebClient();
+            //try
+            //{
+            //    var parameters = new System.Collections.Specialized.NameValueCollection();
                 
-                parameters.Add("idDetalleVentas", "");
-                parameters.Add("Productos_idProductos", entIdProducto.Text);
-                parameters.Add("Ventas_idVentas", IdVentas.ToString());
-                parameters.Add("cantidad", lblCantidad.Text);
-                parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
-                //parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
+            //    parameters.Add("idDetalleVentas", "");
+            //    parameters.Add("Productos_idProductos", entIdProducto.Text);
+            //    parameters.Add("Ventas_idVentas", IdVentas.ToString());
+            //    parameters.Add("cantidad", lblCantidad.Text);
+            //    parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
+            //    //parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
 
 
-                detalle.UploadValues(UrlDetalle, "POST", parameters);
+            //    detalle.UploadValues(UrlDetalle, "POST", parameters);
                 
-                //await DisplayAlert("Agregado Correctamente ", precioTotal.ToString().Replace(",", "."), " Ok");
-                await DisplayAlert("Agregado Correctamente ", PrecioFinal.ToString().Replace(",", "."), " Ok");
+            //    //await DisplayAlert("Agregado Correctamente ", precioTotal.ToString().Replace(",", "."), " Ok");
+            //    await DisplayAlert("Agregado Correctamente ", PrecioFinal.ToString().Replace(",", "."), " Ok");
                 
-                // await Navigation.PushAsync(new Login());
-                //await DisplayAlert("Sucess", "Registro Ingresado del Usuario: " + entNombres.Text + " " + entApellidos.Text, " Cerrar ");
-                // Limpiar();
+            //    // await Navigation.PushAsync(new Login());
+            //    //await DisplayAlert("Sucess", "Registro Ingresado del Usuario: " + entNombres.Text + " " + entApellidos.Text, " Cerrar ");
+            //    // Limpiar();
 
 
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Alerta ", ex.Message, " Cancelar ");
-                //mostrar errores en consola
-                Console.WriteLine(ex.Message, "error");
-            }
-            ///////////////
+            //}
+            //catch (Exception ex)
+            //{
+            //    await DisplayAlert("Alerta ", ex.Message, " Cancelar ");
+            //    //mostrar errores en consola
+            //    Console.WriteLine(ex.Message, "error");
+            //}
+            /////////////////
 
 
         }
@@ -181,6 +181,39 @@ namespace ProyectoHeladeria.Views
             //}
 
 
+
+        }
+
+        public async void GetVenta(int IDusuario) {
+            try
+            {
+                var uri = new Uri(string.Format(UrlVenta3, IDusuario, "pendiente"));
+                var content = await client.GetStringAsync(uri);
+
+                if (content != "false")
+                {
+
+                    Ventas post = JsonConvert.DeserializeObject<Ventas>(content);
+                    entSubtotal.Text = post.precioTotal.ToString();
+                    lblNVenta.Text = post.idVentas.ToString();
+                    //redirigir a un detalle del producto 
+                 //   await Navigation.PushAsync(new VerProducto(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
+                    //  await Navigation.PushAsync(new DetalleVentas(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
+
+
+                }
+                else
+                {
+
+                    await DisplayAlert("error", "e", "e");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+             
+            }
 
         }
     }

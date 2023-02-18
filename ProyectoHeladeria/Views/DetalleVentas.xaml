@@ -8,7 +8,7 @@
                 <Label FontSize="Medium" TextColor="#0A549B"  Text="Carrito de Helados"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </Frame>
 
-            <Label x:Name="lblNVenta" IsVisible="false" />
+            <Label x:Name="lblNVenta" IsVisible="true" />
             
             <ScrollView>
                 <Grid>
@@ -20,23 +20,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
-
-                    <Frame   Grid.Row="0" CornerRadius="30" BackgroundColor="Aqua"  >
-                        <StackLayout >
-                            <Image Source="helado.png" />
-
-                            <Label x:Name="entIdProducto" IsVisible="false" />
-                            <Label x:Name="entNombreProducto" />
-                            <Label x:Name="entPrecio" />
-                            <Label x:Name="entAdereso" />
-                            <Label x:Name="entSabor" />
-                            <Label Text="Cantidad" HorizontalOptions="EndAndExpand" />
-                            <Entry BackgroundColor="Yellow" Text="1" Keyboard="Numeric" x:Name="lblCantidad" HorizontalOptions="EndAndExpand" />
-
-                        </StackLayout>
-
-                    </Frame>
                  
                     <StackLayout Grid.Row="1" BackgroundColor="#F8FABD" >
                         <Button CornerRadius="30" BackgroundColor="#4CAF50" Text="Agregar Producto" x:Name="btnAgregarProducto" Clicked="btnAgregar_Clicked" />
@@ -108,7 +91,8 @@
 
                     <StackLayout Grid.Row="3" BackgroundColor="#FACEBD" Padding="50,0,0,0" >
                         <Label Text="Subtotal"/>
-                        <Entry Placeholder="120.50" />
+                        <Entry x:Name="entSubtotal" />
+                        
                         <Label Text="Iva:" />
                         <Entry Placeholder="12" />
                         <Label Text="Total" />

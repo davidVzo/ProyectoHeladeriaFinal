@@ -36,6 +36,7 @@
             <Button   Text="Usuarios" x:Name="listadoUsuarios" Clicked="listadoUsuarios_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
             <Button   Text="Clientes" x:Name="listadoClientes" Clicked="listadoClientes_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
             <Button   Text="Productos" x:Name="listadoProductos" Clicked="listadoProductos_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
+            <Button   Text="Carrito" x:Name="Carrito" Clicked="Carrito_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
             <Button   Text="Mis Compras" x:Name="listadoVentas" Clicked="listadoVentas_Clicked" BackgroundColor="Transparent"  HorizontalOptions="Start" Padding="0,10,0,20"/>
             <!--
                 <Button   Text="Listado de Detalle Ventas" x:Name="listadoDetalles" Clicked="listadoDetalles_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>

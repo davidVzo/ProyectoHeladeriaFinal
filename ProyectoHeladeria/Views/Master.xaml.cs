@@ -25,6 +25,7 @@ namespace ProyectoHeladeria.Views
                 listadoClientes.IsVisible = true;
                 listadoProductos.IsVisible = true;
                 listadoVentas.IsVisible = true;
+                Carrito.IsVisible = true;
                 //listadoDetalles.IsVisible = true;
             } else if ( perfil == 2 ) {
                 listadoPerfiles.IsVisible = false;
@@ -32,6 +33,7 @@ namespace ProyectoHeladeria.Views
                 listadoClientes.IsVisible = false;
                 listadoProductos.IsVisible = true;
                 listadoVentas.IsVisible = true;
+                Carrito.IsVisible = true;
                 //listadoDetalles.IsVisible = true;
 
             } else if ( perfil == 3 ) {
@@ -40,6 +42,7 @@ namespace ProyectoHeladeria.Views
                 listadoClientes.IsVisible = false;
                 listadoProductos.IsVisible = true;
                 listadoVentas.IsVisible = false;
+                Carrito.IsVisible = true;
                 //listadoDetalles.IsVisible = true;
 
             }
@@ -63,17 +66,12 @@ namespace ProyectoHeladeria.Views
 
         private async void listadoProductos_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ListaProducto(IdUsuario,0));
+            await Navigation.PushAsync(new ListaProducto(IdUsuario));
         }
 
         private async void listadoVentas_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListaVenta());
-        }
-
-        private async void listadoDetalles_Clicked(object sender, EventArgs e)
-        {
-          //  await Navigation.PushAsync(new DetalleVentas());
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -84,6 +82,11 @@ namespace ProyectoHeladeria.Views
         private async void listadoHome_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Principal());
+        }
+
+        private async void Carrito_Clicked(object sender, EventArgs e)
+        {
+              await Navigation.PushAsync(new DetalleVentas(IdUsuario));
         }
     }
 }

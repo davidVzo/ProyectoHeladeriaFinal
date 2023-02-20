@@ -60,7 +60,7 @@ namespace ProyectoHeladeria.Views
 
                         Ventas post = JsonConvert.DeserializeObject<Ventas>(content);
                         //redirigir a un detalle del producto 
-                        await Navigation.PushAsync(new VerProducto(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
+                        await Navigation.PushAsync(new VerProducto(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas, post.precioTotal));
                       //  await Navigation.PushAsync(new DetalleVentas(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
                         
                    

@@ -9,10 +9,10 @@
             <Entry x:Name="entIdVenta" IsVisible="false"  />
             
 
-            <Label x:Name="lblNVenta" IsVisible="false" />
-
+            <Label  x:Name="lblNVenta" IsVisible="false" />
             
-                <Grid>
+
+            <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />

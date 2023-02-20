@@ -109,10 +109,20 @@ namespace ProyectoHeladeria.Views
         private async void btnCompra_Clicked(object sender, EventArgs e)
         {
 
-            //IdVentas = 0;
-            await DisplayAlert("Felicidades ", "Compra Realizada", " Ok");
-            await Navigation.PushAsync(new Principal());
-            /// Insertar venta
+            bool res = await DisplayAlert("Confirmar ", "Realizar compra", "Aceptar", "Cancelar");
+
+            if (res == true)
+            {
+                await Navigation.PushAsync(new Principal());
+            }
+            else { 
+            
+            
+            }
+
+            
+            
+            
             
         }
 

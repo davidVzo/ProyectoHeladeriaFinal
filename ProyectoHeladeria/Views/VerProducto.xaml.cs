@@ -1,4 +1,5 @@
-﻿using ProyectoHeladeria.Models;
+﻿using Newtonsoft.Json;
+using ProyectoHeladeria.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,11 +19,12 @@ namespace ProyectoHeladeria.Views
     {
         private const string UrlDetalle = "http://192.168.56.1/heladeria/postDetalles.php";
 
-        private readonly HttpClient client = new HttpClient();
-        public ObservableCollection<DetalleVenta> _post;
+       
 
-        public int idDetalleVentas = -1, Productos_idProductos, Ventas_idVentas;
-       // double precio_venta;
+        //Actualizar el precio final en Ventas 
+        private const string Url = "http://192.168.56.1/heladeria/postVentasUnitario.php?idVentas={0}&precioTotal={1}";
+
+        // double precio_venta;
 
         public int Usuario_idUsuario;
 
@@ -36,14 +38,23 @@ namespace ProyectoHeladeria.Views
         public double precioUnitario;
         public double PrecioFinal;
 
+        //Calcular precio Total
+        public double PrecioTotal;
+        
 
 
 
 
-        public VerProducto(int idProducto, string nombreProducto, string adereso, double precio, string sabor,int idUsuario, int idVenta)
+
+        public VerProducto(int idProducto, string nombreProducto, string adereso, double precio, string sabor, int idUsuario, int idVenta, double precioTotal)
         {
             InitializeComponent();
-            entIdProducto.Text = idProducto.ToString();
+
+            
+            PrecioTotal = precioTotal;
+            
+
+           entIdProducto.Text = idProducto.ToString();
 
             if (String.IsNullOrEmpty(adereso.ToString()))
             {
@@ -52,7 +63,7 @@ namespace ProyectoHeladeria.Views
             else {
                 spnAdereso.Text = adereso.ToString();
             }
-            
+
             spnPrecio.Text = precio.ToString().Replace(",", ".");
             spnSabor.Text = sabor.ToString();
             entIdVenta.Text = idVenta.ToString();
@@ -65,19 +76,21 @@ namespace ProyectoHeladeria.Views
 
             IdVentas = idVenta;
             Usuario_idUsuario = idUsuario;
-          
+
 
             //setear catidad
 
             lblCantidad.Text = cantidad.ToString();
+          
 
         }
 
         private async void btnAgregarProducto_Clicked(object sender, EventArgs e)
         {
-            bool res= await DisplayAlert("Confirmar ","Agregar Producto", "Aceptar","Cancelar");
+            bool res = await DisplayAlert("Confirmar ", "Agregar Producto", "Aceptar", "Cancelar");
             if (res == true)
             {
+                PrecioTotal = PrecioTotal + PrecioFinal;
                 //Insertar en la base 
 
                 //////////////////////////////
@@ -90,13 +103,13 @@ namespace ProyectoHeladeria.Views
                     parameters.Add("Productos_idProductos", entIdProducto.Text);
                     parameters.Add("Ventas_idVentas", IdVentas.ToString());
                     parameters.Add("cantidad", lblCantidad.Text);
-                    parameters.Add("precio_venta",spnPrecioTotal.Text);
+                    parameters.Add("precio_venta", spnPrecioTotal.Text);
                     //parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
 
                     detalle.UploadValues(UrlDetalle, "POST", parameters);
 
                     // await DisplayAlert("Agregado Correctamente ", PrecioFinal.ToString().Replace(",", "."), " Ok","Cancel");
-                    await Navigation.PushAsync(new DetalleVentas(Usuario_idUsuario));
+
 
                     // Limpiar();
 
@@ -108,20 +121,45 @@ namespace ProyectoHeladeria.Views
                     Console.WriteLine(ex.Message, "error");
                 }
                 ///////////////
+                /// ACtualizar precio final
+              //  PrecioTotalFin = PrecioTotalFin + PrecioTotalAnt;
+
+                WebClient cliente = new WebClient();
+                try
+                {
+                    using (var webClient = new WebClient())
+                    {
+                        var uri = new Uri(string.Format(Url,
+                            IdVentas.ToString(),PrecioTotal.ToString( )));
+
+                        webClient.UploadString(uri, "PUT", string.Empty);
+                        await Navigation.PushAsync(new DetalleVentas(Usuario_idUsuario));
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Alerta ", ex.Message, " Cerrar");
+
+                }
+
+
+
             }
-            else { 
-            
-            
+            else {
+
+
             }
 
-        
+
         }
 
         // Calcular la cantidad
 
         private async void btnCantidad(object sender, EventArgs e) {
             Button operacion = (Button)sender;
-            
+
             if (operacion.Text == "+")
             {
                 //Cantidad en el label
@@ -133,7 +171,7 @@ namespace ProyectoHeladeria.Views
                 spnPrecioTotal.Text = PrecioFinal.ToString().Replace(",", ".");
 
             }
-            else if (operacion.Text == "-" && cantidad >=2)
+            else if (operacion.Text == "-" && cantidad >= 2)
             {
                 cantidad = cantidad - 1;
                 lblCantidad.Text = cantidad.ToString();
@@ -143,9 +181,7 @@ namespace ProyectoHeladeria.Views
 
 
         }
-
-
-
+        
 
     }
 }

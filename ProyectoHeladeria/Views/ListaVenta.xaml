@@ -4,6 +4,7 @@
              x:Class="ProyectoHeladeria.Views.ListaVenta">
     <ContentPage.Content>
         <StackLayout Padding="20" Spacing="0">
+            <Label x:Name="lblIdUsuario" IsVisible="true"  />
             <Frame HeightRequest="30"  >
                 <Label FontSize="Medium" TextColor="#0A549B"  Text="Mis Compras"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </Frame>

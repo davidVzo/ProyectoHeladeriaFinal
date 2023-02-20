@@ -20,7 +20,7 @@ namespace ProyectoHeladeria
             InitializeComponent();
             this.Master = new Master(post.correo,post.Perfil_idPerfil,post.idUsuario);
             this.Detail = new NavigationPage(new Principal());
-            
+            IsPresented = false;
 
             App.MasterDetail = this;
         }

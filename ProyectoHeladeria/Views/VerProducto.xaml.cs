@@ -45,8 +45,14 @@ namespace ProyectoHeladeria.Views
             InitializeComponent();
             entIdProducto.Text = idProducto.ToString();
 
+            if (String.IsNullOrEmpty(adereso.ToString()))
+            {
+                spnAdereso.Text = "No disponible";
+            }
+            else {
+                spnAdereso.Text = adereso.ToString();
+            }
             
-            spnAdereso.Text = adereso.ToString();
             spnPrecio.Text = precio.ToString().Replace(",", ".");
             spnSabor.Text = sabor.ToString();
             entIdVenta.Text = idVenta.ToString();

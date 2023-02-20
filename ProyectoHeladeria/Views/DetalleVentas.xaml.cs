@@ -22,14 +22,14 @@ namespace ProyectoHeladeria.Views
         private const string UrlVenta3 = "http://192.168.56.1/heladeria/postVentas3.php?Usuario_idUsuario={0}&numeroVenta={1}";
 
 
-        private const string UrlDetalle = "http://192.168.56.1/heladeria/postDetalles.php";
+        //private const string UrlDetalle = "http://192.168.56.1/heladeria/postDetalles.php";
         // Ver Detalle
 
         //private readonly HttpClient client = new HttpClient();
         //public ObservableCollection<DetalleVenta> _post;
        
 
-        //private const string UrlDetalleUnitario = "http://192.168.56.1/heladeria/postDetallesUnitario.php?Ventas_idVentas={0}";
+        private const string UrlDetalleUnitario = "http://192.168.56.1/heladeria/postDetallesUnitario.php?Ventas_idVentas={0}";
 
         private readonly HttpClient client = new HttpClient();
         public ObservableCollection<DetalleVenta> _post;
@@ -38,10 +38,6 @@ namespace ProyectoHeladeria.Views
         double precio_venta;
 
         public int Usuario_idUsuario;
-
-
-        // traer el idvENTA
-        public int IdVentas;
         
         // Insertar Venta Final
         public double PrecioFinal;
@@ -51,17 +47,10 @@ namespace ProyectoHeladeria.Views
         public DetalleVentas(int idUsuario )
         {
             InitializeComponent();
-            Get();
-         //   Usuario_idUsuario = idUsuario;
-            GetVenta(idUsuario);
          
+            GetVenta(idUsuario);
             
-            //IdVentas= idVenta;
-            
-            //// id venta
-            //lblNVenta.Text = idVenta.ToString();
-           
-           
+
         }
 
         
@@ -120,7 +109,7 @@ namespace ProyectoHeladeria.Views
         private async void btnCompra_Clicked(object sender, EventArgs e)
         {
 
-            IdVentas = 0;
+            //IdVentas = 0;
             await DisplayAlert("Felicidades ", "Compra Realizada", " Ok");
             await Navigation.PushAsync(new Principal());
             /// Insertar venta
@@ -137,52 +126,7 @@ namespace ProyectoHeladeria.Views
             precio_venta = obj.precio_venta;
 
         }
-        public async void Get()
-        {
-            try
-            {
-                var content = await client.GetStringAsync(UrlDetalle);
-                List<DetalleVenta> post =
-                    JsonConvert.DeserializeObject<List<DetalleVenta>>(content);
-                _post = new ObservableCollection<DetalleVenta>(post);
-                lstDetalles.ItemsSource = post;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-            ////////////ver unitario
-            //try
-            //{
-            //    var uri = new Uri(string.Format(UrlDetalleUnitario, IdVentas));
-            //    var content = await client.GetStringAsync(uri);
-
-            //    if (content != "false")
-            //    {
-            //        DetalleVenta post = JsonConvert.DeserializeObject<DetalleVenta>(content);
-            //        lblCampo.Text = post.idDetalleVentas.ToString();
-            //    //    List<DetalleVenta> post =
-            //    //    JsonConvert.DeserializeObject<List<DetalleVenta>>(content);
-            //    //_post = new ObservableCollection<DetalleVenta>(post);
-            //    //lstDetalles.ItemsSource = post;
-            //// await Navigation.PushAsync(new MainPage(post));
-            //// await Navigation.PushAsync(new PageMenu(post));
-            //    }
-            //    else
-            //    {
-            //        await DisplayAlert("Alerta", "No seleccionado", "Cerrar");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex);
-            //}
-
-
-
-        }
+       
 
         public async void GetVenta(int IDusuario) {
             try
@@ -196,9 +140,34 @@ namespace ProyectoHeladeria.Views
                     Ventas post = JsonConvert.DeserializeObject<Ventas>(content);
                     entSubtotal.Text = post.precioTotal.ToString();
                     lblNVenta.Text = post.idVentas.ToString();
-                    //redirigir a un detalle del producto 
-                 //   await Navigation.PushAsync(new VerProducto(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
-                    //  await Navigation.PushAsync(new DetalleVentas(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
+                    
+                    /////////////////////////
+                    try
+                    {
+                        var uri2 = new Uri(string.Format(UrlDetalleUnitario, post.idVentas.ToString()));
+                        var content2 = await client.GetStringAsync(uri2);
+
+                        if (content2 != "false")
+                        {
+                            
+                            
+                            List<DetalleVenta> post2 =
+                            JsonConvert.DeserializeObject<List<DetalleVenta>>(content2);
+                            _post = new ObservableCollection<DetalleVenta>(post2);
+                            lstDetalles.ItemsSource = post2;
+                            
+                            
+                        }
+                        else
+                        {
+                            await DisplayAlert("Alerta", "No seleccionado", "Cerrar");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    /////////////////////////
 
 
                 }

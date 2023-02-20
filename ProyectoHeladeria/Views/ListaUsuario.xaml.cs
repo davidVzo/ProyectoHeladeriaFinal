@@ -68,6 +68,7 @@ namespace ProyectoHeladeria.Views
             try
             {
                 var content = await client.GetStringAsync(Url);
+
                 List<Usuario> post =
                     JsonConvert.DeserializeObject<List<Usuario>>(content);
                 _post = new ObservableCollection<Usuario>(post);

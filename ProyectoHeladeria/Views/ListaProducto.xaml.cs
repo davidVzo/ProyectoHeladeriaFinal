@@ -86,6 +86,10 @@ namespace ProyectoHeladeria.Views
 
                             venta.UploadValues(UrlVenta, "POST", parameters);
 
+                            //Ventas post = JsonConvert.DeserializeObject<Ventas>(content);
+                            //redirigir a un detalle del producto 
+                           // await Navigation.PushAsync(new VerProducto(idProductos, nombreProducto, adereso, precio, sabor, IdUsuarioVerificar, post.idVentas));
+
                             // await Navigation.PushAsync(new Login());
 
                             // Limpiar();

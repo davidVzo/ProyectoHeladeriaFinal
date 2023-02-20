@@ -21,15 +21,11 @@ namespace ProyectoHeladeria.Views
         // Ver Venta 
         private const string UrlVenta3 = "http://192.168.56.1/heladeria/postVentas3.php?Usuario_idUsuario={0}&numeroVenta={1}";
 
-
-        //private const string UrlDetalle = "http://192.168.56.1/heladeria/postDetalles.php";
-        // Ver Detalle
-
-        //private readonly HttpClient client = new HttpClient();
-        //public ObservableCollection<DetalleVenta> _post;
-       
-
         private const string UrlDetalleUnitario = "http://192.168.56.1/heladeria/postDetallesUnitario.php?Ventas_idVentas={0}";
+
+        // actualizar venta
+        private const string Url = "http://192.168.56.1/heladeria/postVentasUnitario.php?idVentas={0}&numeroVenta={1}";
+        //
 
         private readonly HttpClient client = new HttpClient();
         public ObservableCollection<DetalleVenta> _post;
@@ -113,7 +109,29 @@ namespace ProyectoHeladeria.Views
 
             if (res == true)
             {
-                await Navigation.PushAsync(new Principal());
+
+                WebClient cliente = new WebClient();
+                try
+                {
+                    using (var webClient = new WebClient())
+                    {
+                        var uri = new Uri(string.Format(Url,
+                            lblNVenta.Text, "cancelado"));
+
+                        webClient.UploadString(uri, "PUT", string.Empty);
+
+                        await Navigation.PushAsync(new Principal());
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Alerta ", ex.Message, " Cerrar");
+
+                }
+
+
+                
             }
             else { 
             

@@ -130,7 +130,7 @@ namespace ProyectoHeladeria.Views
                     using (var webClient = new WebClient())
                     {
                         var uri = new Uri(string.Format(Url,
-                            IdVentas.ToString(),PrecioTotal.ToString( )));
+                            IdVentas.ToString(),PrecioTotal.ToString( ).Replace(",", ".")));
 
                         webClient.UploadString(uri, "PUT", string.Empty);
                         await Navigation.PushAsync(new DetalleVentas(Usuario_idUsuario));

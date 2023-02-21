@@ -38,6 +38,7 @@
             <Button   Text="Productos" x:Name="listadoProductos" Clicked="listadoProductos_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
             <Button   Text="Carrito" x:Name="Carrito" Clicked="Carrito_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
             <Button   Text="Mis Compras" x:Name="listadoVentas" Clicked="listadoVentas_Clicked" BackgroundColor="Transparent"  HorizontalOptions="Start" Padding="0,10,0,20"/>
+            <Button Text="Pagina Prueba" x:Name="prueba" Clicked="prueba_Clicked" />
             <!--
                 <Button   Text="Listado de Detalle Ventas" x:Name="listadoDetalles" Clicked="listadoDetalles_Clicked" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,10,0,20"/>
           -->

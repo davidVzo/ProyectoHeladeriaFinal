@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoHeladeria.Views.PagePrueba"
+             Title="Basic Grid demo"
+             >
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.ColumnSpan="2" BackgroundColor="Orange">
+            <Label Text="hola" />
+            <Button Text="ingresar" />
+        </StackLayout>
+
+        <Label 
+               Grid.ColumnSpan="2"
+               Text="Row 2, Columns 0 and 1 hla"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+
+
+
+        <BoxView Grid.Row="1"
+                 Color="Teal" />
+        <Label Grid.Row="1"
+               Text="Row 1, Column 0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+
+        <BoxView Grid.Row="1"
+                 Grid.Column="1"
+                 Color="Purple" />
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               Text="Row1, Column 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Button Text="ingresar" BackgroundColor="red" Grid.Row="2" Grid.ColumnSpan="1"  />
+
+
+
+    </Grid>
+</ContentPage>

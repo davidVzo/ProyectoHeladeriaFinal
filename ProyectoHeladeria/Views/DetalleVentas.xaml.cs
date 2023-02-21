@@ -43,62 +43,16 @@ namespace ProyectoHeladeria.Views
         public DetalleVentas(int idUsuario )
         {
             InitializeComponent();
-         
-            GetVenta(idUsuario);
             
+            GetVenta(idUsuario);
+            Usuario_idUsuario= idUsuario;
 
         }
 
         
         private async void btnAgregar_Clicked(object sender, EventArgs e)
         {
-            ////calcular costos por producto
-            //double cantidad = double.Parse(lblCantidad.Text);
-
-            ////double precioUnitario = Convert.ToDouble(entPrecio.Text)
-            //double precioUnitario = double.Parse(entPrecio.Text);
-            
-            //double precioTotal = cantidad * precioUnitario ;
-            //PrecioFinal = precioTotal+PrecioFinal;
-            ////Calcular precio por producto
-
-            ////Insertar en la base 
-
-
-
-            //// await Navigation.PushAsync(new ListaProducto(Usuario_idUsuario,IdVentas));
-            ////////////////////////////////
-            //WebClient detalle = new WebClient();
-            //try
-            //{
-            //    var parameters = new System.Collections.Specialized.NameValueCollection();
-                
-            //    parameters.Add("idDetalleVentas", "");
-            //    parameters.Add("Productos_idProductos", entIdProducto.Text);
-            //    parameters.Add("Ventas_idVentas", IdVentas.ToString());
-            //    parameters.Add("cantidad", lblCantidad.Text);
-            //    parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
-            //    //parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
-
-
-            //    detalle.UploadValues(UrlDetalle, "POST", parameters);
-                
-            //    //await DisplayAlert("Agregado Correctamente ", precioTotal.ToString().Replace(",", "."), " Ok");
-            //    await DisplayAlert("Agregado Correctamente ", PrecioFinal.ToString().Replace(",", "."), " Ok");
-                
-            //    // await Navigation.PushAsync(new Login());
-            //    //await DisplayAlert("Sucess", "Registro Ingresado del Usuario: " + entNombres.Text + " " + entApellidos.Text, " Cerrar ");
-            //    // Limpiar();
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    await DisplayAlert("Alerta ", ex.Message, " Cancelar ");
-            //    //mostrar errores en consola
-            //    Console.WriteLine(ex.Message, "error");
-            //}
-            /////////////////
+            await Navigation.PushAsync( new ListaProducto(Usuario_idUsuario));
 
 
         }

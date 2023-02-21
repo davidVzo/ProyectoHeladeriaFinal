@@ -14,15 +14,48 @@ namespace ProyectoHeladeria
     public partial class MainPage : MasterDetailPage
     {
         
-        public MainPage( Usuario  post)
+        public MainPage( string correo,int idPerfil,int idUsuario,int numeroLista)
         {
             
             InitializeComponent();
-            this.Master = new Master(post.correo,post.Perfil_idPerfil,post.idUsuario);
-            this.Detail = new NavigationPage(new Principal());
-            IsPresented = false;
+          
+            
+            NavigationPage.SetHasNavigationBar(this, false);
 
-            App.MasterDetail = this;
+            this.Master = new Master(correo, idPerfil, idUsuario);
+            if (numeroLista == 1) {
+
+                this.Detail = new NavigationPage(new Principal());
+                App.MasterDetail = this;
+            } else if (numeroLista == 2) {
+
+                this.Detail = new NavigationPage(new ListaPerfil());
+                App.MasterDetail = this;
+            } else if (numeroLista == 3) {
+                this.Detail = new NavigationPage(new ListaUsuario());
+                App.MasterDetail = this;
+            } else if ( numeroLista == 4) {
+                this.Detail = new NavigationPage(new ListaCliente());
+                App.MasterDetail = this;
+            }
+            else if (numeroLista == 5)
+            {
+                this.Detail = new NavigationPage(new ListaProducto(idUsuario));
+                App.MasterDetail = this;
+            }
+            else if (numeroLista == 6)
+            {
+                this.Detail = new NavigationPage(new DetalleVentas(idUsuario));
+                App.MasterDetail = this;
+            }
+            else if (numeroLista == 7)
+            {
+                this.Detail = new NavigationPage(new ListaVenta(idUsuario));
+                App.MasterDetail = this;
+            }
+
+
+
         }
     }
 }

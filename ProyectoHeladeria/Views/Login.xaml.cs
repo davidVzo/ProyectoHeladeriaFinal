@@ -26,7 +26,8 @@ namespace ProyectoHeladeria.Views
         public Login()
         {
             InitializeComponent();
-          
+            NavigationPage.SetHasNavigationBar(this, false);
+
         }
         private async void btnLogin_Clicked(object sender, EventArgs e)
         {
@@ -45,7 +46,11 @@ namespace ProyectoHeladeria.Views
                         if (content != "false")
                         {
                             Usuario post = JsonConvert.DeserializeObject<Usuario>(content);
-                            await Navigation.PushAsync(new MainPage(post));
+                            string correo = post.correo.ToString();
+                            int idPerfil = post.Perfil_idPerfil;
+                            int idUsuario = post.idUsuario;
+
+                            await Navigation.PushAsync(new MainPage(correo,idPerfil,idUsuario,1));
                            // await Navigation.PushAsync(new PageMenu(post));
                         }
                         else

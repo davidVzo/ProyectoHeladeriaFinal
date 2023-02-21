@@ -40,16 +40,24 @@ namespace ProyectoHeladeria.Views
 
         //Calcular precio Total
         public double PrecioTotal;
-        
 
+        ////Navegacion de usuario
 
+        private const string UrlUsuario = "http://192.168.56.1/heladeria/postUsuario.php?idUsuario={0}";
+
+        private readonly HttpClient client = new HttpClient();
+        public ObservableCollection<Usuario> _post;
+
+        public string correo;
+        public int idPerfil;
+        ////
 
 
 
         public VerProducto(int idProducto, string nombreProducto, string adereso, double precio, string sabor, int idUsuario, int idVenta, double precioTotal)
         {
             InitializeComponent();
-
+            GetUsuario(idUsuario);
             
             PrecioTotal = precioTotal;
             
@@ -104,13 +112,8 @@ namespace ProyectoHeladeria.Views
                     parameters.Add("Ventas_idVentas", IdVentas.ToString());
                     parameters.Add("cantidad", lblCantidad.Text);
                     parameters.Add("precio_venta", spnPrecioTotal.Text);
-                    //parameters.Add("precio_venta", precioTotal.ToString().Replace(",","."));
 
                     detalle.UploadValues(UrlDetalle, "POST", parameters);
-
-                    // await DisplayAlert("Agregado Correctamente ", PrecioFinal.ToString().Replace(",", "."), " Ok","Cancel");
-
-
                     // Limpiar();
 
                 }
@@ -122,7 +125,7 @@ namespace ProyectoHeladeria.Views
                 }
                 ///////////////
                 /// ACtualizar precio final
-              //  PrecioTotalFin = PrecioTotalFin + PrecioTotalAnt;
+
 
                 WebClient cliente = new WebClient();
                 try
@@ -133,8 +136,9 @@ namespace ProyectoHeladeria.Views
                             IdVentas.ToString(),PrecioTotal.ToString( ).Replace(",", ".")));
 
                         webClient.UploadString(uri, "PUT", string.Empty);
-                        await Navigation.PushAsync(new DetalleVentas(Usuario_idUsuario));
-
+                        //  await Navigation.PushAsync(new ListaProducto(Usuario_idUsuario));
+                        await Navigation.PushAsync(new MainPage(correo.ToString(), idPerfil, Usuario_idUsuario, 5));
+                        //  await Navigation.PushAsync(new DetalleVentas(Usuario_idUsuario));
 
                     }
                 }
@@ -143,8 +147,6 @@ namespace ProyectoHeladeria.Views
                     await DisplayAlert("Alerta ", ex.Message, " Cerrar");
 
                 }
-
-
 
             }
             else {
@@ -177,6 +179,35 @@ namespace ProyectoHeladeria.Views
                 lblCantidad.Text = cantidad.ToString();
                 PrecioFinal = PrecioFinal - precioUnitario;
                 spnPrecioTotal.Text = PrecioFinal.ToString().Replace(",", ".");
+            }
+
+
+        }
+
+        private async void GetUsuario(int IdUsuario) {
+            try
+            {
+                var uri = new Uri(string.Format(UrlUsuario,IdUsuario ));
+                var content = await client.GetStringAsync(uri);
+
+                if (content != "false")
+                {
+                    Usuario post = JsonConvert.DeserializeObject<Usuario>(content);
+                    correo = post.correo.ToString();
+                    idPerfil = post.Perfil_idPerfil;
+                    
+
+                   // await Navigation.PushAsync(new MainPage(correo, idPerfil, idUsuario, 1));
+                    // await Navigation.PushAsync(new PageMenu(post));
+                }
+                else
+                {
+                    await DisplayAlert("Alerta", "Usuario o Password Incorrecto.", "Cerrar");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
 

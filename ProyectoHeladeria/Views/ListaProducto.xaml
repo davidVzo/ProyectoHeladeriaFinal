@@ -9,7 +9,7 @@
         <StackLayout Padding="20" Spacing="0">
             <Label x:Name="lblIdUsuario" IsVisible="false" />
             <Frame HeightRequest="30"  >
-                <Label FontSize="Medium" TextColor="#0A549B"  Text="Helados"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label FontSize="Medium" TextColor="#0A549B"  Text="Lanzamientos"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </Frame>
 
             <ScrollView>

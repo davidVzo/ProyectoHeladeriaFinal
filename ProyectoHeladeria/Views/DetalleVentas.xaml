@@ -6,13 +6,16 @@
              
              >
     <ContentPage.Content>
+        
         <StackLayout Padding="0" Spacing="0">
+            
+
             <Label x:Name="lblNVenta" IsVisible="false" />
             
             <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition />
+                <RowDefinition Height="200" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -20,85 +23,201 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.ColumnSpan="2" BackgroundColor="Orange">
+            <StackLayout Padding="5" Grid.ColumnSpan="2" Grid.Row="0" BackgroundColor="White">
+                    <CollectionView x:Name="lstDetalles" SelectionMode="Single" SelectionChanged="lstDetalles_SelectionChanged"   >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
 
-                    <Frame BackgroundColor="#D6F5B5" BorderColor="DarkSlateGray" HeightRequest="100" Padding="0">
-                        <Grid Padding="0">
+                                <Grid RowSpacing="0" ColumnSpacing="0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition  />
+                                        <ColumnDefinition Width="Auto"  />
+
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Image Source="helado.png"  />
+                                    <StackLayout Grid.Column="1" Spacing="0" >
+                                        <Label Text="{Binding nombreProducto}" FontAttributes="Bold" TextColor="Black"   />
+                                        
+
+                                        <Label  Padding="0,0,0,-5" Margin="0"  >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Sabor: "  />
+                                                    <Span Text="{Binding sabor }"   />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label  Padding="0,0,0,1" Margin="0"  >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Adereso: "  />
+                                                    <Span Text="{Binding adereso }"   />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+
+                                        
+                                        
+                                        <Button Text="Editar" BackgroundColor="Transparent" Margin="0" Padding="-40,0,0,0" HeightRequest="20" FontSize="12" HorizontalOptions="Start"/>
+                                        <Button Text="Eliminar" x:Name="Eliminar" Clicked="Eliminar_Clicked"  BackgroundColor="Transparent" Padding="-25,0,0,0" HeightRequest="20" FontSize="12" HorizontalOptions="Start" />
+
+                                    </StackLayout>
+
+                                    <StackLayout   Grid.Column="2" >
+                                        
+                                        
+                                        
+                                        <Label HorizontalOptions="EndAndExpand" Margin="0,0,15,0" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="$ " FontSize="15" ForegroundColor="Black" />
+
+                                                    <Span Text="{Binding precio_venta }"  FontSize="15" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+
+
+                                        <Grid Margin="0,10,0,0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                
+                                            </Grid.ColumnDefinitions>
+                                            
+                                         
+
+                                            <Frame CornerRadius="100" 
+                                                HeightRequest="0"
+                                                WidthRequest="40"
+                                                HorizontalOptions="Center"
+                                                Padding="0"
+                                                IsClippedToBounds="True"
+                                                Grid.Column="0"
+                                                
+                                                BorderColor="#273746"
+                                                BackgroundColor="Transparent"
+                                            >
+
+                                                <Button Text="-" Padding="0" Margin="0,-8,0,0"  FontSize="25"  BackgroundColor="Transparent"  />
+                                            </Frame>
+
+                                            <Label Text="{Binding cantidad}" Grid.Column="1" TextColor="Black" FontSize="16" Margin="0,5,0,0"  />
+
+                                            <Frame CornerRadius="100" 
+                                                HeightRequest="0"
+                                                WidthRequest="40"
+                                                HorizontalOptions="Center"
+                                                Padding="0"
+                                                IsClippedToBounds="True"
+                                                Grid.Column="2"
+                                                BorderColor="#273746"
+                                                BackgroundColor="Transparent"
+                                            >        
+
+                                                <Button Text="+" Grid.Column="2" FontSize="14"  Margin="0,-8,0,0" BackgroundColor="Transparent"    />
+                                            </Frame>
+                                       
+
+                                        </Grid>
+
+                                    </StackLayout>
+                                    
+
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout >
+
+
+                <Frame Margin="0,0,0,-15"  BackgroundColor="BurlyWood" Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="20"  >
+                    <StackLayout >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Margin="2,0,3,0" Text="Id" VerticalOptions="Center"  Grid.Column="0" />
-                            <Label Margin="2,0,2,0" Text="IdProducto" VerticalOptions="Center"  Grid.Column="1" />
-                            <Label Margin="2,0,2,0" Text="Producto" VerticalOptions="Center"  Grid.Column="2" />
-                            <Label Margin="2,0,2,0" Text="Cantidad" VerticalOptions="Center"  Grid.Column="3" />
-                            <Label Margin="2,0,2,0" Text="Precio Total" VerticalOptions="Center"  Grid.Column="4" />
 
-                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                            <Label Text="Subtotal" TextColor="Black" />
+                            
+                            <Label Margin="0,0,15,0" HorizontalOptions="End" Grid.Column="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
 
-                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                            <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                        <Span Text="$ " FontSize="15" ForegroundColor="Black" />
+                                        <Span x:Name="spnSubtotal"  FontSize="15" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label Text="Iva" Grid.Row="1" TextColor="Black"  />
+                            
+
+                            <Label Margin="0,0,-15,0" HorizontalOptions="End" Grid.Column="1" Grid.Row="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$ " FontSize="15" ForegroundColor="Black" />
+                                        
+                                        <Span x:Name="spnIVA" />
+
+                                        <Span Text=" 12 " FontSize="10"  />
+                                        <Span Text="% " FontSize="10" ForegroundColor="Black" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label Text="Total a pagar" Grid.Row="2" TextColor="Black" />
+                            
+                            <Label Margin="0,0,15,0" HorizontalOptions="End" Grid.Row="2" Grid.Column="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        
+                                        <Span Text="$ " FontSize="15" ForegroundColor="Black" />
+                                        <Span x:Name="spnPRECIOFINAL" />
+                                        
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
 
 
                         </Grid>
-                    </Frame>
+                       
 
-                    <ListView x:Name="lstDetalles" SelectionMode="Single" ItemSelected="lstDetalles_ItemSelected">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
 
-                                    <Grid Padding="0" RowSpacing="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                    </StackLayout>
 
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label  Text="{Binding idDetalleVentas}" VerticalOptions="Center"  Grid.Column="0"  />
-                                        <Label  Text="{Binding Productos_idProductos}" VerticalOptions="Center"  Grid.Column="1" />
-                                        <Label  Text="{Binding Ventas_idVentas}" VerticalOptions="Center"  Grid.Column="2" />
-
-                                        <Label  Text="{Binding cantidad}" VerticalOptions="Center"  Grid.Column="3" />
-                                        <Label  Text="{Binding precio_venta}" VerticalOptions="Center"  Grid.Column="4" />
+                </Frame>
 
 
 
-                                    </Grid>
-
-
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-
-                </StackLayout>
-
-
-
-            <StackLayout BackgroundColor="BurlyWood" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <Label Text="Subtotal"/>
-                    <Entry x:Name="entSubtotal" />
-
-                    <Label Text="Iva:" />
-                    <Entry Placeholder="12" />
-                    <Label Text="Total" />
-                    <Entry Placeholder="300" x:Name="entPrecioFinal" />
-
-                </StackLayout>
-
+                
                 <Button BackgroundColor="White"  Text="Seguir Pidiendo" x:Name="btnAgregarProducto" Clicked="btnAgregar_Clicked" Grid.Row="2" />
                 <Button BackgroundColor="#4CAF50"  Text="Pagar" x:Name="btnCompra" Clicked="btnCompra_Clicked" Grid.Row="2" Grid.Column="1"   />
 

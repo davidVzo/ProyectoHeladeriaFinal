@@ -12,7 +12,7 @@
                 <Label FontSize="Medium" TextColor="#0A549B"  Text="Lanzamientos"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </Frame>
 
-            <ScrollView>
+            
                 <StackLayout  >
                     <CollectionView x:Name="lstProductos" SelectionMode="Single" SelectionChanged="lstProductos_SelectionChanged"   >
                         <CollectionView.ItemTemplate>
@@ -40,6 +40,7 @@
 
                                     </StackLayout>
                                     <StackLayout Grid.Column="1"
+                                                 
                                         >
                                         <Label  Text="{Binding sabor}" VerticalOptions="Center" Margin="0,30,0,0"  />
                                      
@@ -58,7 +59,7 @@
                     </CollectionView>
                 </StackLayout>
                 
-            </ScrollView>
+            
             <!--
                 <Button Text="Agregar Producto " x:Name="btnAgregar" Clicked="btnAgregar_Clicked" />
             -->

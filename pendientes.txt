@@ -1,0 +1,4 @@
+Refactorizar código
+Mejorar la Interfaz 
+Implementar Reporte o Factura
+Mejorar Roles de Usuarios
